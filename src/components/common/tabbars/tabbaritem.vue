@@ -18,7 +18,6 @@ export default {
   },
   methods: {
     itemclick(){
-      console.log(1);
       this.$router.replace(this.path)
     }
   },

@@ -6,7 +6,7 @@ const Home = () => import('../views/home/Home')
 const Category = () => import('../views/category/category')
 const Cart = () => import('../views/cart/cart')
 const Me = () => import('../views/profile/profile')
-
+const detail=()=> import('views/detail/detail')
 Vue.use(VueRouter)
 const routes = [
   {
@@ -29,6 +29,10 @@ const routes = [
   {
     path: '/profile',
     component:Me
+  },
+  {
+    path: '/detail:iid',
+    component:detail
   }
 ]
 const router = new VueRouter({

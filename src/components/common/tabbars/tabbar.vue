@@ -14,7 +14,8 @@ export default {
 #app .nav{
   padding-top: 10px;
   display: flex;
-  background-color: #f6f6f6;
+  background-color: #fff;
+ z-index: 100; 
   position: fixed;
   left: 0;
   bottom: 0;
