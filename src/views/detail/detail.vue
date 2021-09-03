@@ -1,14 +1,18 @@
 <template>
-  <div class="detail" >
+  <div class="detail">
     <Detailnavbar class="scrollnavbar" />
-    <Detailswiper :TopImages="topImages" />
-    <Detailbaseinfo :goods="goods" />
-    <DetailShopInfo :shop="shop" />
-    <DetailGoodsInfo :detailInfo="detailInfo" />
-    <detailparam :paramInfo="paramInfo" />
-    <DetailCommentInfo :commentInfo="commentInfo" />
-    <goodslist :goods="recommend" />
-    <div class="white"></div>
+    <div class="bac">
+      <Detailswiper :TopImages="topImages" />
+      <Detailbaseinfo :goods="goods" />
+      <DetailShopInfo :shop="shop" />
+      <DetailGoodsInfo :detailInfo="detailInfo" />
+      <detailparam :paramInfo="paramInfo" />
+      <DetailCommentInfo :commentInfo="commentInfo" />
+      <goodslist :goods="recommend" />
+      <Detailbottombar @addToCart="addcart" />
+      <toast :message='msg' :isshow='show'/>
+      <div class="big"></div>
+    </div>
   </div>
 </template>
 
@@ -28,6 +32,10 @@ import DetailGoodsInfo from "./childrencomponents/detailGoodsInfo.vue";
 import detailparam from "./childrencomponents/detailparam.vue";
 import DetailCommentInfo from "./childrencomponents/detailcommentInfo.vue";
 import goodslist from "components/content/goods/goodslist.vue";
+import Detailbottombar from "./childrencomponents/detailbottombar.vue";
+import toast from "components/common/toast/Toast.vue"
+/* 映射actions */
+import {mapActions} from 'vuex'
 export default {
   name: "Detail",
   data() {
@@ -40,7 +48,35 @@ export default {
       paramInfo: {},
       commentInfo: {},
       recommend: [],
+      msg:'',
+      show:false
     };
+  },
+  methods: {
+    ...mapActions(['addCart']),
+        addcart() {
+      /* 获取购物车要展示的数据 */
+      const product = {};
+      product.image=this.topImages[0];
+      product.title=this.goods.title;
+      product.desc=this.goods.desc;
+      product.price=this.goods.realPrice;
+      product.iid=this.iid;
+      /* 如果想要知道操作是否完成，在actions里面返回一个promise对象 */
+    /*   this.$store.dispatch('addCart',product).then(res=>{
+        console.log(res);
+      }); */
+      this.addCart(product).then(res=>{
+        console.log(res);
+        this.show=true;
+        this.msg=res
+        setTimeout(()=>{
+          this.show=false
+          this.msg=''
+        },2000)
+
+      })
+    },
   },
   components: {
     Detailnavbar,
@@ -51,6 +87,8 @@ export default {
     detailparam,
     DetailCommentInfo,
     goodslist,
+    Detailbottombar,
+    toast
   },
   created() {
     this.iid = this.$route.params.iid;
@@ -88,16 +126,24 @@ export default {
 
 <style  scoped>
 .detail {
-  width: 100%;
-  height: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 100;
+  background-color: #fff;
+}
+.bac {
+  margin-top: 44px;
+  background-color: #fff;
 }
 .scrollnavbar {
-  position: sticky;
+  width: 100%;
+  position: fixed;
   top: 0px;
   z-index: 10000;
   background-color: white;
 }
-.white {
-  height: 85px;
+.big {
+  height: 10px;
+  margin-top: 45px;
 }
 </style>

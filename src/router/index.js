@@ -40,5 +40,8 @@ const router = new VueRouter({
   // url模式
   mode:'history'
 })
-
+const routerReplace = VueRouter.prototype.replace
+VueRouter.prototype.replace = function (location) {
+  return routerReplace.call(this, location).catch(error => error)
+}
 export default router

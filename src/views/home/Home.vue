@@ -17,58 +17,7 @@
     <!-- 对应pop的list -->
     <goodslist :goods="changegoodslist"></goodslist>
     <Backtop v-show="isshow"/>
-    <ul>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-      <li>aa</li>
-    </ul>
+    <div class="white"></div>
   </div>
 </template>
 
@@ -200,5 +149,8 @@ export default {
   top: 44px;
   background-color: #fff;
   z-index: 99;
+}
+.white{
+  height: 90px;
 }
 </style>
